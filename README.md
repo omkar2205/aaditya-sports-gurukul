@@ -1,29 +1,34 @@
-# Aaditya Sports Gurukul
+# Sports Gurukul — Shark Tank Product Demo
 
-Responsive demo website for a modern multi-sport coaching academy.
+Interactive concept website prepared for Aaditya Ghosalkar's Sports Gurukul pitch.
 
-## Included
+## Product position
 
-- Mobile-first responsive layout
-- Cricket, football, badminton, basketball, athletics and conditioning programmes
-- Athlete development pathway and coaching methodology
-- Facilities gallery
-- Testimonial slider
-- FAQ accordion
-- Front-end enquiry form demonstration
-- GitHub Pages deployment workflow
+Sports Gurukul is presented as a proposed sports-coaching marketplace and athlete-development ecosystem connecting:
 
-## Files
+- Athletes
+- Verified coaches
+- Schools and sports academies
+- Scouts and opportunity providers
 
-- `index.html` — website content and structure
-- `styles.css` — complete responsive visual system
-- `script.js` — navigation, animation, slider, FAQ and form interactions
-- `.github/workflows/deploy-pages.yml` — automated GitHub Pages deployment
+The concept combines coach discovery, smart recording, performance intelligence, trusted profiles and athlete visibility.
+
+## Demo features
+
+- Investor-focused landing page
+- Problem, solution and product narrative aligned with the pitch deck
+- Interactive dashboards for athletes, coaches, schools/academies and scouts
+- Simulated performance-analysis workflow
+- Five-stage full-screen Pitch Mode
+- Revenue model and projected growth
+- Funding ask and use-of-funds breakdown
+- Responsive design for laptop, projector and mobile
+- No external images, live APIs, authentication or backend dependencies
+
+## Important prototype note
+
+This is a presentation prototype. AI analysis, smart-device functionality, coach verification, athlete numbers and dashboard data are simulated unless explicitly identified as projections from the pitch deck.
 
 ## Publishing
 
-The repository includes a GitHub Pages workflow. In the repository settings, open **Pages** and select **GitHub Actions** as the source if it is not already selected. New commits to `main` will then deploy automatically.
-
-## Demo content
-
-Statistics, testimonials and the contact flow are demonstration content and can be replaced with confirmed academy information.
+The included GitHub Pages workflow deploys changes from `main`. In **Settings → Pages**, select **GitHub Actions** as the source if required.
