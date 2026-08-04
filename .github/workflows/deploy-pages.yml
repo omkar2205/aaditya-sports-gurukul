@@ -27,10 +27,51 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare website
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          cp index.html _site/index.html
+          cp .nojekyll _site/.nojekyll 2>/dev/null || true
+
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path("_site/index.html")
+          content = path.read_text(encoding="utf-8")
+
+          replacements = {
+              '.eye{display:flex;align-items:center;gap:9px;': '.eye{display:flex;align-items:center;gap:0;',
+              '.eye:before{content:"";width:27px;height:2px;background:var(--c)}': '',
+              'online or in-person': 'online or in person',
+              'Badminton · Intermediate · Pune': 'Badminton, Intermediate, Pune',
+              'Badminton coach · 8 years experience': 'Badminton coach with 8 years of experience',
+              '10-digit mobile number': '10 digit mobile number',
+              'Enter a valid 10-digit number.': 'Enter a valid 10 digit number.',
+              'Create a focused long-term plan': 'Create a focused long term plan',
+              'In-person': 'In person',
+              '₹2,000–₹5,000': '₹2,000 to ₹5,000',
+              '₹5,000–₹10,000': '₹5,000 to ₹10,000',
+              'Scout-ready profile': 'Profile ready for scouts',
+              'Decision-making': 'Decision making',
+              'Explorer · Free': 'Explorer, Free',
+              'Progress · ₹499/month': 'Progress, ₹499/month',
+              'Performance · ₹1,999/month': 'Performance, ₹1,999/month',
+              '`${c[2]} · In person`': '`${c[2]}, in person`',
+              '`${c[2]} · Online available`': '`${c[2]}, online available`',
+              '${sport} coach · ${loc}': '${sport} coach, ${loc}',
+          }
+
+          for old, new in replacements.items():
+              content = content.replace(old, new)
+
+          path.write_text(content, encoding="utf-8")
+          PY
+
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "."
+          path: "_site"
 
       - name: Deploy to GitHub Pages
         id: deployment
