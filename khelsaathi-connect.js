@@ -39,15 +39,47 @@
     };
   };
 
-  const requestJsonp = (payload, timeoutMs = 22000) => new Promise((resolve, reject) => {
+  const trustedOrigin = (origin) => (
+    origin === 'https://script.google.com' ||
+    origin === 'https://script.googleusercontent.com' ||
+    /^https:\/\/[^/]+\.googleusercontent\.com$/.test(origin)
+  );
+
+  const requestBackend = (payload, timeoutMs = 24000) => new Promise((resolve, reject) => {
     const requestId = payload.requestId || `WEB-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    const callbackName = `__ks_${requestId.replace(/[^a-zA-Z0-9_]/g, '')}`;
-    const script = document.createElement('script');
+    const frameName = `ksFrame_${requestId.replace(/[^a-zA-Z0-9_]/g, '')}`;
+    const iframe = document.createElement('iframe');
+    const form = document.createElement('form');
+    const input = document.createElement('input');
     let completed = false;
 
+    iframe.name = frameName;
+    iframe.hidden = true;
+    iframe.setAttribute('aria-hidden', 'true');
+    form.method = 'POST';
+    form.action = API_URL;
+    form.target = frameName;
+    form.hidden = true;
+    input.type = 'hidden';
+    input.name = 'payload';
+    input.value = JSON.stringify({
+      ...payload,
+      requestId,
+      transport: 'iframe',
+      origin: window.location.origin,
+      history: Array.isArray(payload.history)
+        ? payload.history.slice(-6).map((item) => ({
+            role: item.role === 'assistant' ? 'assistant' : 'user',
+            content: String(item.content || '').slice(0, 500)
+          }))
+        : []
+    });
+    form.appendChild(input);
+
     const cleanup = () => {
-      if (script.parentNode) script.remove();
-      try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
+      window.removeEventListener('message', onMessage);
+      iframe.remove();
+      form.remove();
     };
     const finish = (fn) => {
       if (completed) return;
@@ -56,31 +88,18 @@
       cleanup();
       fn();
     };
-
-    window[callbackName] = (data) => finish(() => resolve(data));
-    script.onerror = () => finish(() => reject(new Error('NETWORK_ERROR')));
-
-    const compactPayload = {
-      ...payload,
-      requestId,
-      history: Array.isArray(payload.history)
-        ? payload.history.slice(-6).map((item) => ({
-            role: item.role === 'assistant' ? 'assistant' : 'user',
-            content: String(item.content || '').slice(0, 500)
-          }))
-        : []
+    const onMessage = (event) => {
+      if (!trustedOrigin(event.origin)) return;
+      if (!event.data || event.data.source !== 'KhelSaathiBackend') return;
+      if (event.data.requestId !== requestId) return;
+      finish(() => resolve(event.data.data));
     };
-    const params = new URLSearchParams({
-      callback: callbackName,
-      payload: JSON.stringify(compactPayload),
-      v: VERSION,
-      t: String(Date.now())
-    });
-    script.src = `${API_URL}?${params.toString()}`;
-    script.async = true;
 
     const timer = setTimeout(() => finish(() => reject(new Error('REQUEST_TIMEOUT'))), timeoutMs);
-    document.head.appendChild(script);
+    window.addEventListener('message', onMessage);
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    form.submit();
   });
 
   const appendMessage = (role, text, meta = '') => {
@@ -190,7 +209,7 @@
 
     try {
       setStatus('checking', 'KhelSaathi is thinking');
-      const response = await requestJsonp({
+      const response = await requestBackend({
         action: 'chat',
         sessionId,
         message: clean,
@@ -251,7 +270,7 @@
   const checkHealth = async () => {
     setStatus('checking', 'Checking connection');
     try {
-      const health = await requestJsonp({ action: 'health' }, 15000);
+      const health = await requestBackend({ action: 'health' }, 15000);
       if (health?.spreadsheet?.ok && health?.groq?.apiKeyConfigured) {
         setStatus('ready', 'Backend ready');
       } else {
