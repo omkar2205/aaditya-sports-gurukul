@@ -31,42 +31,9 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets
-          cp index.html styles.css script.js chatbot.js chatbot.css _site/
+          cp index.html styles.css base.css sections.css forms.css responsive.css script.js chatbot.js chatbot.css _site/
           cp assets/logo.svg _site/assets/logo.svg
           cp .nojekyll _site/.nojekyll 2>/dev/null || true
-
-          python <<'PY'
-          from pathlib import Path
-          import re
-
-          page = Path('_site/index.html')
-          content = page.read_text(encoding='utf-8')
-          markup = Path('chatbot.html').read_text(encoding='utf-8')
-
-          content = re.sub(
-              r'\s*<button class="chat-launcher"[\s\S]*?(?=  <div class="modal")',
-              '\n' + markup + '\n',
-              content,
-              count=1
-          )
-          content = content.replace(
-              '<link rel="stylesheet" href="styles.css">',
-              '<link rel="stylesheet" href="styles.css">\n  <link rel="stylesheet" href="chatbot.css?v=20260805-6">'
-          )
-          content = re.sub(
-              r'<script src="script\.js(?:\?[^\"]*)?"></script>(?:\s*<script src="khelsaathi-connect\.js(?:\?[^\"]*)?"></script>)?',
-              '<script src="script.js?v=20260805-6"></script>\n  <script src="chatbot.js?v=20260805-6"></script>',
-              content,
-              count=1
-          )
-          page.write_text(content, encoding='utf-8')
-
-          stylesheet = Path('_site/styles.css')
-          css = stylesheet.read_text(encoding='utf-8')
-          css = re.sub(r'\.chat-launcher\s*\{[\s\S]*?(?=\.modal\s*\{)', '', css, count=1)
-          css = re.sub(r'^\s*\.chat-(?:launcher|launcher-icon|launcher-copy|panel)[^\n]*\n?', '', css, flags=re.MULTILINE)
-          stylesheet.write_text(css, encoding='utf-8')
-          PY
 
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
