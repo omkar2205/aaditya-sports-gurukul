@@ -65,6 +65,11 @@ jobs:
           for old, new in replacements.items():
               content = content.replace(old, new)
 
+          content = content.replace(
+              '</head>',
+              '<style>.eye::before,.eye:before{display:none!important;content:none!important}.eye{gap:0!important}</style></head>'
+          )
+
           path.write_text(content, encoding="utf-8")
           PY
 
