@@ -50,7 +50,7 @@ jobs:
           index = Path('_site/index.html')
           index_content = index.read_text(encoding='utf-8').replace(
               '<script src="script.js"></script>',
-              '<script src="script.js?v=20260805-4"></script>\n  <script src="khelsaathi-connect.js?v=20260805-4"></script>'
+              '<script src="script.js?v=20260805-5"></script>\n  <script src="khelsaathi-connect.js?v=20260805-5"></script>'
           )
           index.write_text(index_content, encoding='utf-8')
           PY
