@@ -31,28 +31,35 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets
-          cp index.html styles.css script.js khelsaathi-connect.js _site/
+          cp index.html styles.css script.js chatbot.js chatbot.css _site/
           cp assets/logo.svg _site/assets/logo.svg
           cp .nojekyll _site/.nojekyll 2>/dev/null || true
 
           python <<'PY'
           from pathlib import Path
+          import re
 
-          api_url = 'https://script.google.com/macros/s/AKfycbypuCFhBf6B15McAP4WtTe65ryExAvIoHQhpPO6TlWd5N083P8Ll-ekXlrmLJTV2uJ-jA/exec'
+          page = Path('_site/index.html')
+          content = page.read_text(encoding='utf-8')
+          markup = Path('chatbot.html').read_text(encoding='utf-8')
 
-          script = Path('_site/script.js')
-          script_content = script.read_text(encoding='utf-8').replace(
-              "const KHELSAATHI_API_URL = '';",
-              f"const KHELSAATHI_API_URL = '{api_url}';"
+          content = re.sub(
+              r'\s*<button class="chat-launcher"[\s\S]*?(?=  <div class="modal")',
+              '\n' + markup + '\n',
+              content,
+              count=1
           )
-          script.write_text(script_content, encoding='utf-8')
-
-          index = Path('_site/index.html')
-          index_content = index.read_text(encoding='utf-8').replace(
-              '<script src="script.js"></script>',
-              '<script src="script.js?v=20260805-6"></script>\n  <script src="khelsaathi-connect.js?v=20260805-6"></script>'
+          content = content.replace(
+              '<link rel="stylesheet" href="styles.css">',
+              '<link rel="stylesheet" href="styles.css">\n  <link rel="stylesheet" href="chatbot.css?v=20260805-6">'
           )
-          index.write_text(index_content, encoding='utf-8')
+          content = re.sub(
+              r'<script src="script\.js(?:\?[^\"]*)?"></script>(?:\s*<script src="khelsaathi-connect\.js(?:\?[^\"]*)?"></script>)?',
+              '<script src="script.js?v=20260805-6"></script>\n  <script src="chatbot.js?v=20260805-6"></script>',
+              content,
+              count=1
+          )
+          page.write_text(content, encoding='utf-8')
           PY
 
       - name: Upload website
