@@ -60,6 +60,12 @@ jobs:
               count=1
           )
           page.write_text(content, encoding='utf-8')
+
+          stylesheet = Path('_site/styles.css')
+          css = stylesheet.read_text(encoding='utf-8')
+          css = re.sub(r'\.chat-launcher\s*\{[\s\S]*?(?=\.modal\s*\{)', '', css, count=1)
+          css = re.sub(r'^\s*\.chat-(?:launcher|launcher-icon|launcher-copy|panel)[^\n]*\n?', '', css, flags=re.MULTILINE)
+          stylesheet.write_text(css, encoding='utf-8')
           PY
 
       - name: Upload website
