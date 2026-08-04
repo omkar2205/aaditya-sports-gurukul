@@ -4,13 +4,21 @@ Customer-facing coach matching website for Sports Gurukul.
 
 ## Website files
 
-- `index.html` contains the page structure and KhelSaathi chat interface.
-- `styles.css` contains the responsive website and chatbot styling.
-- `script.js` contains the original website and chatbot behaviour.
-- `khelsaathi-connect.js` handles backend health checks, cross-origin fallback transport and visible connection status.
+- `index.html` contains the main website structure.
+- `styles.css` contains the main responsive website styling.
+- `script.js` contains navigation, counters, coach matching and modal behaviour.
+- `chatbot.html` contains the KhelSaathi interface markup.
+- `chatbot.css` contains the KhelSaathi styling.
+- `chatbot.js` contains the KhelSaathi interface and Apps Script connection.
 - `assets/logo.svg` is the current logo asset.
-- `apps-script/Code.gs` is the Google Apps Script backend for Groq, diagnostics, conversation logging and lead capture.
-- `.github/workflows/deploy-pages.yml` publishes the website to GitHub Pages.
+- `apps-script/Code.gs` is the Google Apps Script backend for Groq, diagnostics and conversation logging.
+- `.github/workflows/deploy-pages.yml` builds and publishes the website to GitHub Pages.
+
+## KhelSaathi connection
+
+KhelSaathi uses the deployed Apps Script Web App URL already configured in `chatbot.js`.
+
+The frontend uses a JSONP request so GitHub Pages can receive Apps Script responses without browser cross-origin restrictions. There is no local AI fallback. If the backend cannot be reached, the interface shows that KhelSaathi is unavailable instead of generating a generic response.
 
 ## KhelSaathi backend setup
 
@@ -31,7 +39,7 @@ Saving `Code.gs` alone does not update an existing versioned Web App deployment.
 
 The backend supports:
 
-- `?action=health` to check the spreadsheet, configuration and API-key presence.
+- `?action=health` to check the spreadsheet, configuration and API key.
 - `?action=diagnostics` to also run a small Groq completion test.
 - `testKhelSaathiSetup()` to test the complete setup from the Apps Script editor.
 - `testGroqConnection()` to test only the Groq connection.
