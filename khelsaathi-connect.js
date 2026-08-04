@@ -1,26 +1,27 @@
 (() => {
   const API_URL = 'https://script.google.com/macros/s/AKfycbypuCFhBf6B15McAP4WtTe65ryExAvIoHQhpPO6TlWd5N083P8Ll-ekXlrmLJTV2uJ-jA/exec';
-  const chatForm = document.querySelector('.chat-form');
-  const chatInput = document.querySelector('#chatInput');
+  const VERSION = '20260805-5';
+
+  const originalForm = document.querySelector('.chat-form');
+  const originalSuggestions = document.querySelector('.chat-suggestions');
+  if (!originalForm || !originalSuggestions) return;
+
+  // Clone these controls to remove the older local-fallback event listeners.
+  const chatForm = originalForm.cloneNode(true);
+  const suggestions = originalSuggestions.cloneNode(true);
+  originalForm.replaceWith(chatForm);
+  originalSuggestions.replaceWith(suggestions);
+
+  const chatInput = chatForm.querySelector('#chatInput');
   const chatMessages = document.querySelector('.chat-messages');
-  const suggestions = document.querySelector('.chat-suggestions');
   const coachForm = document.querySelector('#coachForm');
   const statusElement = document.querySelector('.chat-identity small');
-  if (!chatForm || !chatInput || !chatMessages) return;
+  const sendButton = chatForm.querySelector('button[type="submit"]');
+  if (!chatInput || !chatMessages) return;
 
   const history = [];
   const sessionId = sessionStorage.getItem('khelSaathiSession') || `KS-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   sessionStorage.setItem('khelSaathiSession', sessionId);
-
-  const style = document.createElement('style');
-  style.textContent = `
-    .chat-status i{transition:background .2s ease;background:#f0bd4f!important}
-    .chat-status[data-state="connected"] i{background:#78dcc8!important}
-    .chat-status[data-state="ready"] i{background:#8ec9ff!important}
-    .chat-status[data-state="fallback"] i{background:#ffb16e!important}
-    .chat-status[data-state="error"] i{background:#ff8a78!important}
-  `;
-  document.head.appendChild(style);
 
   const setStatus = (state, label) => {
     if (!statusElement) return;
@@ -29,95 +30,60 @@
     statusElement.innerHTML = `<i></i><span>${label}</span>`;
   };
 
-  const profile = () => {
+  const getProfile = () => {
     const value = (name) => coachForm?.elements?.[name]?.value || '';
     return {
-      athlete: value('athlete'), age: value('age'), city: value('city'),
-      phone: value('phone'), email: value('email'), sport: value('sport'),
+      age: value('age'), city: value('city'), sport: value('sport'),
       level: value('level'), goal: value('goal'), mode: value('mode'),
       schedule: value('schedule'), budget: value('budget'), plan: value('plan')
     };
   };
 
-  const trustedOrigin = (origin) => (
-    origin === 'https://script.google.com' ||
-    /^https:\/\/[^/]+\.googleusercontent\.com$/.test(origin)
-  );
-
-  const requestViaIframe = (payload, timeoutMs = 20000) => new Promise((resolve, reject) => {
+  const requestJsonp = (payload, timeoutMs = 22000) => new Promise((resolve, reject) => {
     const requestId = payload.requestId || `WEB-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    const frameName = `ksFrame_${requestId.replace(/[^a-zA-Z0-9_]/g, '')}`;
-    const iframe = document.createElement('iframe');
-    const form = document.createElement('form');
-    const input = document.createElement('input');
+    const callbackName = `__ks_${requestId.replace(/[^a-zA-Z0-9_]/g, '')}`;
+    const script = document.createElement('script');
+    let completed = false;
 
-    iframe.name = frameName;
-    iframe.hidden = true;
-    form.method = 'POST';
-    form.action = API_URL;
-    form.target = frameName;
-    form.hidden = true;
-    input.type = 'hidden';
-    input.name = 'payload';
-    input.value = JSON.stringify({
-      ...payload,
-      requestId,
-      transport: 'iframe',
-      origin: window.location.origin
-    });
-    form.appendChild(input);
-
-    let finished = false;
     const cleanup = () => {
-      window.removeEventListener('message', onMessage);
-      iframe.remove();
-      form.remove();
+      if (script.parentNode) script.remove();
+      try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
     };
-    const finish = (callback) => {
-      if (finished) return;
-      finished = true;
+    const finish = (fn) => {
+      if (completed) return;
+      completed = true;
       clearTimeout(timer);
       cleanup();
-      callback();
+      fn();
     };
-    const onMessage = (event) => {
-      if (!trustedOrigin(event.origin)) return;
-      if (!event.data || event.data.source !== 'KhelSaathiBackend') return;
-      if (event.data.requestId !== requestId) return;
-      finish(() => resolve(event.data.data));
-    };
-    const timer = setTimeout(() => finish(() => reject(new Error('IFRAME_TIMEOUT'))), timeoutMs);
 
-    window.addEventListener('message', onMessage);
-    document.body.append(iframe, form);
-    form.submit();
+    window[callbackName] = (data) => finish(() => resolve(data));
+    script.onerror = () => finish(() => reject(new Error('NETWORK_ERROR')));
+
+    const compactPayload = {
+      ...payload,
+      requestId,
+      history: Array.isArray(payload.history)
+        ? payload.history.slice(-6).map((item) => ({
+            role: item.role === 'assistant' ? 'assistant' : 'user',
+            content: String(item.content || '').slice(0, 500)
+          }))
+        : []
+    };
+    const params = new URLSearchParams({
+      callback: callbackName,
+      payload: JSON.stringify(compactPayload),
+      v: VERSION,
+      t: String(Date.now())
+    });
+    script.src = `${API_URL}?${params.toString()}`;
+    script.async = true;
+
+    const timer = setTimeout(() => finish(() => reject(new Error('REQUEST_TIMEOUT'))), timeoutMs);
+    document.head.appendChild(script);
   });
 
-  const requestBackend = async (payload, timeoutMs = 14000) => {
-    const requestId = payload.requestId || `WEB-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
-    const requestPayload = { ...payload, requestId };
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), timeoutMs);
-
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(requestPayload),
-        signal: controller.signal,
-        cache: 'no-store',
-        redirect: 'follow'
-      });
-      if (!response.ok) throw new Error(`HTTP_${response.status}`);
-      return await response.json();
-    } catch (error) {
-      return await requestViaIframe(requestPayload, Math.max(timeoutMs, 20000));
-    } finally {
-      clearTimeout(timer);
-    }
-  };
-
-  const appendMessage = (role, text) => {
+  const appendMessage = (role, text, meta = '') => {
     const wrapper = document.createElement('div');
     wrapper.className = `chat-message ${role}`;
     if (role === 'assistant') {
@@ -129,6 +95,12 @@
     const bubble = document.createElement('div');
     bubble.className = 'message-bubble';
     bubble.textContent = text;
+    if (meta) {
+      const detail = document.createElement('small');
+      detail.className = 'chat-response-meta';
+      detail.textContent = meta;
+      bubble.appendChild(detail);
+    }
     wrapper.appendChild(bubble);
     chatMessages.appendChild(wrapper);
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -144,30 +116,16 @@
     return wrapper;
   };
 
-  const localResponse = (message) => {
-    const text = message.toLowerCase();
-    if (/(who are you|what are you|what is your name|your name)/.test(text)) {
-      return {
-        reply: 'I am KhelSaathi, the Sports Gurukul assistant. I can help athletes and parents understand coaching options, plans and coach matching.',
-        action: 'none', formUpdates: {}, suggestions: ['Find the right coach', 'Choose a plan']
-      };
-    }
-    if (/(injury|injured|pain|hurt|sprain|strain)/.test(text)) {
-      return {
-        reply: 'I cannot diagnose an injury or recommend treatment. Please speak with a qualified medical professional before continuing training.',
-        action: 'none', formUpdates: {}, suggestions: ['Help me find a coach']
-      };
-    }
-    if (/(price|pricing|cost|plan|membership)/.test(text)) {
-      return {
-        reply: 'Explorer is free. Progress is ₹499 per month for regular development support. Performance is ₹1,999 per month for competitive or professional pathway goals.',
-        action: 'scroll_to_plans', formUpdates: {}, suggestions: ['Beginner athlete', 'Competitive athlete']
-      };
-    }
-    return {
-      reply: 'Tell me the sport, current playing level and main goal. I can suggest the next step, explain the plans or help fill the coach matching form.',
-      action: 'none', formUpdates: {}, suggestions: ['Find the right coach', 'Choose a plan']
-    };
+  const updateSuggestions = (items = []) => {
+    suggestions.innerHTML = '';
+    const safeItems = items.length ? items : ['Find the right coach', 'Choose a plan'];
+    safeItems.slice(0, 4).forEach((item) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.message = item;
+      button.textContent = item;
+      suggestions.appendChild(button);
+    });
   };
 
   const applyUpdates = (updates = {}) => {
@@ -185,7 +143,7 @@
     document.querySelector('.chat-close')?.click();
   };
 
-  const actionButton = (label, handler) => {
+  const addActionButton = (label, handler) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'chat-action';
@@ -196,60 +154,71 @@
   };
 
   const renderResponse = (response) => {
-    appendMessage('assistant', response.reply || 'I could not complete that request right now.');
-    history.push({ role: 'assistant', content: response.reply || '' });
-    const updates = response.formUpdates || {};
+    const reply = response.reply || 'KhelSaathi could not prepare a response just now.';
+    const meta = response.requestId ? `Request ${response.requestId}` : '';
+    appendMessage('assistant', reply, response.ok ? '' : meta);
+    history.push({ role: 'assistant', content: reply });
 
+    const updates = response.formUpdates || {};
     if (Object.values(updates).some(Boolean)) {
-      actionButton('Use these details', () => applyUpdates(updates));
+      addActionButton('Use these details', () => applyUpdates(updates));
     } else if (response.action === 'scroll_to_match') {
-      actionButton('Open coach matching', () => {
+      addActionButton('Open coach matching', () => {
         document.querySelector('#match')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         document.querySelector('.chat-close')?.click();
       });
     } else if (response.action === 'scroll_to_plans') {
-      actionButton('View membership plans', () => {
+      addActionButton('View membership plans', () => {
         document.querySelector('#plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         document.querySelector('.chat-close')?.click();
       });
     }
-
-    if (Array.isArray(response.suggestions) && suggestions) {
-      suggestions.innerHTML = '';
-      response.suggestions.slice(0, 4).forEach((item) => {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.dataset.message = item;
-        button.textContent = item;
-        suggestions.appendChild(button);
-      });
-    }
+    updateSuggestions(Array.isArray(response.suggestions) ? response.suggestions : []);
   };
 
   const sendMessage = async (message) => {
     const clean = String(message || '').trim();
-    if (!clean) return;
+    if (!clean || sendButton?.disabled) return;
+
     appendMessage('user', clean);
+    const previousHistory = history.slice(-6);
     history.push({ role: 'user', content: clean });
     chatInput.value = '';
     chatInput.style.height = '';
-    const sendButton = chatForm.querySelector('button[type="submit"]');
     if (sendButton) sendButton.disabled = true;
     const typing = showTyping();
 
     try {
-      const response = await requestBackend({
-        action: 'chat', sessionId, message: clean,
-        history: history.slice(0, -1).slice(-10), profile: profile()
+      setStatus('checking', 'KhelSaathi is thinking');
+      const response = await requestJsonp({
+        action: 'chat',
+        sessionId,
+        message: clean,
+        history: previousHistory,
+        profile: getProfile()
       });
       typing.remove();
-      if (!response?.ok) throw new Error(response?.errorCode || 'BACKEND_ERROR');
+
+      if (!response?.ok) {
+        setStatus('error', response?.errorCode || 'Connection issue');
+        renderResponse(response || {
+          ok: false,
+          reply: 'KhelSaathi could not reach the AI service. Please try again shortly.'
+        });
+        return;
+      }
+
       setStatus('connected', 'AI connected');
       renderResponse(response);
     } catch (error) {
       typing.remove();
-      setStatus('fallback', 'Basic mode');
-      renderResponse(localResponse(clean));
+      setStatus('error', 'Connection issue');
+      renderResponse({
+        ok: false,
+        reply: 'KhelSaathi could not connect to the backend. Please refresh the page and try again.',
+        requestId: String(error?.message || 'NETWORK_ERROR'),
+        suggestions: ['Try again', 'Open coach matching']
+      });
     } finally {
       if (sendButton) sendButton.disabled = false;
       chatInput.focus();
@@ -258,31 +227,41 @@
 
   chatForm.addEventListener('submit', (event) => {
     event.preventDefault();
-    event.stopImmediatePropagation();
     sendMessage(chatInput.value);
-  }, true);
+  });
 
-  suggestions?.addEventListener('click', (event) => {
+  chatInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      chatForm.requestSubmit();
+    }
+  });
+
+  chatInput.addEventListener('input', () => {
+    chatInput.style.height = 'auto';
+    chatInput.style.height = `${Math.min(chatInput.scrollHeight, 104)}px`;
+  });
+
+  suggestions.addEventListener('click', (event) => {
     const button = event.target.closest('button[data-message]');
     if (!button) return;
-    event.preventDefault();
-    event.stopImmediatePropagation();
     sendMessage(button.dataset.message);
-  }, true);
+  });
 
   const checkHealth = async () => {
     setStatus('checking', 'Checking connection');
     try {
-      const health = await requestBackend({ action: 'health' }, 12000);
+      const health = await requestJsonp({ action: 'health' }, 15000);
       if (health?.spreadsheet?.ok && health?.groq?.apiKeyConfigured) {
         setStatus('ready', 'Backend ready');
       } else {
         setStatus('error', 'Setup incomplete');
       }
     } catch (error) {
-      setStatus('fallback', 'Basic mode');
+      setStatus('error', 'Backend unavailable');
     }
   };
 
-  setTimeout(checkHealth, 350);
+  updateSuggestions(Array.from(suggestions.querySelectorAll('button')).map((button) => button.dataset.message || button.textContent));
+  setTimeout(checkHealth, 250);
 })();
