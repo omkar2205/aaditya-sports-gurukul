@@ -1,34 +1,19 @@
-# Sports Gurukul — Shark Tank Product Demo
+# Sports Gurukul
 
-Interactive concept website prepared for Aaditya Ghosalkar's Sports Gurukul pitch.
+Customer-facing coach matching website for Sports Gurukul.
 
-## Product position
+## User journey
 
-Sports Gurukul is presented as a proposed sports-coaching marketplace and athlete-development ecosystem connecting:
+1. Enter athlete details
+2. Select sport, playing level, goals and coaching preferences
+3. Choose a Sports Gurukul membership plan
+4. Receive personalised coach matches
+5. Select a coach and request an introduction
 
-- Athletes
-- Verified coaches
-- Schools and sports academies
-- Scouts and opportunity providers
+## Membership plans
 
-The concept combines coach discovery, smart recording, performance intelligence, trusted profiles and athlete visibility.
+- Explorer: Free
+- Progress: ₹499/month
+- Performance: ₹1,999/month
 
-## Demo features
-
-- Investor-focused landing page
-- Problem, solution and product narrative aligned with the pitch deck
-- Interactive dashboards for athletes, coaches, schools/academies and scouts
-- Simulated performance-analysis workflow
-- Five-stage full-screen Pitch Mode
-- Revenue model and projected growth
-- Funding ask and use-of-funds breakdown
-- Responsive design for laptop, projector and mobile
-- No external images, live APIs, authentication or backend dependencies
-
-## Important prototype note
-
-This is a presentation prototype. AI analysis, smart-device functionality, coach verification, athlete numbers and dashboard data are simulated unless explicitly identified as projections from the pitch deck.
-
-## Publishing
-
-The included GitHub Pages workflow deploys changes from `main`. In **Settings → Pages**, select **GitHub Actions** as the source if required.
+The website is self-contained in `index.html` and runs without a backend or external API. GitHub Pages deployment is configured through `.github/workflows/deploy-pages.yml`.
