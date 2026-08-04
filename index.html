@@ -3,398 +3,428 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Aaditya Sports Gurukul — structured sports coaching, athlete development and character building." />
-  <meta name="theme-color" content="#0b1d32" />
-  <title>Aaditya Sports Gurukul</title>
-  <link rel="preconnect" href="https://images.unsplash.com" />
+  <meta name="description" content="Sports Gurukul — a proposed sports coaching marketplace connecting athletes, verified coaches, schools, academies and scouts." />
+  <meta name="theme-color" content="#17255f" />
+  <title>Sports Gurukul | Shark Tank Product Demo</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="announcement">
-    <span class="announcement__dot"></span>
-    Admissions open for the new training season
-    <a href="#contact">Book an assessment</a>
+  <div class="demo-ribbon">
+    <span>SHARK TANK PRODUCT DEMO</span>
+    <strong>Concept prototype • Built for presentation</strong>
   </div>
 
   <header class="site-header" id="top">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="Aaditya Sports Gurukul home">
-        <span class="brand__mark" aria-hidden="true">
-          <span class="brand__sun"></span>
-          <span class="brand__letter">A</span>
+    <div class="container nav-shell">
+      <a class="brand" href="#top" aria-label="Sports Gurukul home">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="brand-ball"></span>
+          <span class="brand-path"></span>
         </span>
-        <span class="brand__text">
-          <strong>Aaditya</strong>
-          <small>Sports Gurukul</small>
+        <span class="brand-copy">
+          <strong>SPORTS GURUKUL</strong>
+          <small>Talent meets opportunity</small>
         </span>
       </a>
 
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
 
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="#programmes">Programmes</a>
-        <a href="#method">Our method</a>
-        <a href="#facilities">Facilities</a>
-        <a href="#stories">Stories</a>
-        <a class="nav-cta" href="#contact">Join the Gurukul</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#demo">Product Demo</a>
+        <a href="#business">Business</a>
+        <button class="nav-pitch js-open-pitch" type="button">Enter Pitch Mode</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero section-pad">
-      <div class="hero__glow hero__glow--one"></div>
-      <div class="hero__glow hero__glow--two"></div>
-      <div class="container hero__grid">
-        <div class="hero__copy reveal">
-          <div class="eyebrow"><span></span> Coaching for the complete athlete</div>
-          <h1>Train with purpose.<br /><em>Play with confidence.</em></h1>
-          <p class="hero__lead">A modern sports academy built on the Gurukul philosophy — expert coaching, disciplined practice, personal attention and strong character.</p>
-          <div class="hero__actions">
-            <a class="button button--primary" href="#contact">Book a free assessment <span>↗</span></a>
-            <a class="button button--ghost" href="#programmes">Explore programmes</a>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-orbit hero-orbit--one"></div>
+      <div class="hero-orbit hero-orbit--two"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="kicker"><span></span> A sports coaching marketplace</div>
+          <h1 id="hero-title">Sporting talent is everywhere.<br /><em>Opportunity should be too.</em></h1>
+          <p>Sports Gurukul is a proposed athlete-development platform that connects young players with verified coaches, performance intelligence and pathways to schools, academies and scouts.</p>
+          <div class="hero-actions">
+            <a class="button button--coral" href="#demo">Experience the product <span>→</span></a>
+            <button class="button button--outline js-open-pitch" type="button">Present in Pitch Mode</button>
           </div>
-          <div class="hero__trust">
-            <div class="avatar-stack" aria-hidden="true">
-              <img src="https://images.unsplash.com/photo-1530137073520-4ea6e2f10a48?auto=format&fit=crop&w=120&q=80" alt="" />
-              <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=120&q=80" alt="" />
-              <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=120&q=80" alt="" />
-            </div>
-            <div><strong>Built for every level</strong><span>Beginners to competitive athletes</span></div>
+          <div class="hero-proof">
+            <div><strong>4</strong><span>users connected</span></div>
+            <div><strong>5</strong><span>revenue streams</span></div>
+            <div><strong>1</strong><span>complete ecosystem</span></div>
           </div>
         </div>
 
-        <div class="hero__visual reveal reveal--delay">
-          <div class="hero-card hero-card--main">
-            <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1200&q=88" alt="Young cricket players training on a field" />
-            <div class="hero-card__overlay"></div>
-            <div class="hero-card__caption">
-              <span>Featured programme</span>
-              <strong>Cricket High Performance</strong>
+        <div class="hero-product reveal reveal-delay">
+          <div class="product-window">
+            <div class="window-bar">
+              <div class="window-dots"><i></i><i></i><i></i></div>
+              <span>sports-gurukul.app</span>
+              <b>LIVE DEMO</b>
+            </div>
+            <div class="athlete-topline">
+              <div class="avatar avatar--large">AR</div>
+              <div>
+                <span class="muted-label">ATHLETE PROFILE</span>
+                <h3>Aarav Rao</h3>
+                <p>Badminton • U-16 • Pune</p>
+              </div>
+              <span class="verified-pill">✓ Verified</span>
+            </div>
+            <div class="score-layout">
+              <div class="overall-score">
+                <svg viewBox="0 0 120 120" role="img" aria-label="Performance score 78 out of 100">
+                  <circle class="score-track" cx="60" cy="60" r="48"></circle>
+                  <circle class="score-value" cx="60" cy="60" r="48"></circle>
+                </svg>
+                <div><strong>78</strong><span>Performance</span></div>
+              </div>
+              <div class="mini-metrics">
+                <div><span>Footwork</span><b>82</b><i style="--value:82%"></i></div>
+                <div><span>Reaction</span><b>76</b><i style="--value:76%"></i></div>
+                <div><span>Balance</span><b>74</b><i style="--value:74%"></i></div>
+              </div>
+            </div>
+            <div class="coach-match-card">
+              <div class="coach-icon">C</div>
+              <div><small>TOP COACH MATCH</small><strong>Coach Meera • 96% match</strong></div>
+              <button type="button" data-scroll-demo>View</button>
             </div>
           </div>
-          <div class="floating-card floating-card--top">
-            <span class="floating-card__icon">◎</span>
-            <div><strong>Personalised plans</strong><small>Progress tracked monthly</small></div>
-          </div>
-          <div class="floating-card floating-card--bottom">
-            <strong class="counter" data-target="6">0</strong><span>+</span>
-            <small>sports programmes</small>
-          </div>
-          <div class="hero__stroke" aria-hidden="true"></div>
+          <div class="floating-note floating-note--left"><b>AI</b><span>Performance intelligence</span></div>
+          <div class="floating-note floating-note--right"><b>✓</b><span>Verified coach network</span></div>
         </div>
       </div>
-
-      <div class="container stats-strip reveal">
-        <div><strong class="counter" data-target="12">0</strong><span>+</span><small>Specialist coaches</small></div>
-        <div><strong class="counter" data-target="450">0</strong><span>+</span><small>Athletes trained</small></div>
-        <div><strong class="counter" data-target="28">0</strong><span>+</span><small>Tournament wins</small></div>
-        <div><strong class="counter" data-target="4">0</strong><span>.9</span><small>Parent rating</small></div>
+      <div class="hero-marquee" aria-hidden="true">
+        <div>ATHLETES <span>•</span> COACHES <span>•</span> SCHOOLS <span>•</span> ACADEMIES <span>•</span> SCOUTS <span>•</span> ATHLETES <span>•</span> COACHES <span>•</span> SCHOOLS <span>•</span> ACADEMIES <span>•</span> SCOUTS</div>
       </div>
     </section>
 
-    <section class="programmes section-pad" id="programmes">
+    <section class="problem section-pad" id="problem">
       <div class="container">
         <div class="section-heading reveal">
           <div>
-            <div class="eyebrow eyebrow--dark"><span></span> Find your game</div>
-            <h2>Programmes that build<br />skill and self-belief.</h2>
+            <div class="kicker kicker--dark"><span></span> The opportunity gap</div>
+            <h2>Millions of athletes.<br />Limited opportunities.</h2>
           </div>
-          <p>Age-appropriate coaching pathways with clear milestones, regular feedback and the right balance of challenge and enjoyment.</p>
+          <p>Talent is often restricted by money, geography, availability and access. At the same time, coaches need athletes and athletes need the right coaches.</p>
         </div>
 
-        <div class="programme-grid">
-          <article class="programme-card programme-card--featured reveal">
-            <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=1000&q=85" alt="Cricket training" />
-            <div class="programme-card__shade"></div>
-            <div class="programme-card__content">
-              <span class="tag">Ages 7–18</span>
-              <h3>Cricket</h3>
-              <p>Batting, bowling, fielding and match intelligence.</p>
-              <a href="#contact" aria-label="Enquire about cricket coaching">View programme <span>↗</span></a>
-            </div>
+        <div class="problem-grid">
+          <article class="problem-card reveal">
+            <span class="problem-number">01</span>
+            <div class="problem-icon">₹</div>
+            <h3>Coaching</h3>
+            <p>Quality private coaching can be expensive and difficult to compare.</p>
           </article>
+          <article class="problem-card reveal reveal-delay">
+            <span class="problem-number">02</span>
+            <div class="problem-icon">✦</div>
+            <h3>Talent</h3>
+            <p>Promising athletes can remain unseen outside major sporting centres.</p>
+          </article>
+          <article class="problem-card reveal">
+            <span class="problem-number">03</span>
+            <div class="problem-icon">◎</div>
+            <h3>Access</h3>
+            <p>Coaches lack a simple way to discover, assess and support new athletes.</p>
+          </article>
+          <article class="problem-card reveal reveal-delay">
+            <span class="problem-number">04</span>
+            <div class="problem-icon">↔</div>
+            <h3>The gap</h3>
+            <p>There is no single trusted network connecting the entire development journey.</p>
+          </article>
+        </div>
 
-          <article class="programme-card reveal reveal--delay">
-            <div class="programme-card__icon">⚽</div>
-            <span class="tag tag--light">Ages 6–16</span>
-            <h3>Football</h3>
-            <p>Technique, movement, decision-making and team play.</p>
-            <a href="#contact">View programme <span>↗</span></a>
-          </article>
-
-          <article class="programme-card programme-card--orange reveal">
-            <div class="programme-card__icon">🏸</div>
-            <span class="tag tag--light">Ages 7–18</span>
-            <h3>Badminton</h3>
-            <p>Footwork, stroke development, tactics and match fitness.</p>
-            <a href="#contact">View programme <span>↗</span></a>
-          </article>
-
-          <article class="programme-card programme-card--light reveal reveal--delay">
-            <div class="programme-card__icon">🏀</div>
-            <span class="tag tag--dark">Ages 8–18</span>
-            <h3>Basketball</h3>
-            <p>Ball handling, shooting, defence and court awareness.</p>
-            <a href="#contact">View programme <span>↗</span></a>
-          </article>
-
-          <article class="programme-card programme-card--navy reveal">
-            <div class="programme-card__icon">🏃</div>
-            <span class="tag tag--light">Ages 8–18</span>
-            <h3>Athletics</h3>
-            <p>Running mechanics, speed, endurance and competition prep.</p>
-            <a href="#contact">View programme <span>↗</span></a>
-          </article>
-
-          <article class="programme-card programme-card--outline reveal reveal--delay">
-            <div class="programme-card__icon">✦</div>
-            <span class="tag tag--dark">All athletes</span>
-            <h3>Strength & Conditioning</h3>
-            <p>Safe, age-appropriate physical development and recovery.</p>
-            <a href="#contact">View programme <span>↗</span></a>
-          </article>
+        <div class="problem-statement reveal">
+          <span>THE GOAL</span>
+          <strong>Connect athletes with certified coaches — and turn improvement into visible opportunity.</strong>
         </div>
       </div>
     </section>
 
-    <section class="method section-pad" id="method">
-      <div class="container method__grid">
-        <div class="method__visual reveal">
-          <div class="method__image-wrap">
-            <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1200&q=85" alt="Athlete preparing to run on a track" />
-            <div class="method__quote">
-              <span>“</span>
-              <p>Great players are developed through good habits, not occasional effort.</p>
-            </div>
-          </div>
-          <div class="method__badge"><strong>360°</strong><small>athlete development</small></div>
-        </div>
-
-        <div class="method__copy reveal reveal--delay">
-          <div class="eyebrow eyebrow--dark"><span></span> The Gurukul method</div>
-          <h2>More than coaching.<br />A way to grow.</h2>
-          <p>We combine modern sports science with the timeless values of discipline, respect and responsibility.</p>
-
-          <div class="method-list">
-            <article>
-              <span>01</span>
-              <div><h3>Skill</h3><p>Strong fundamentals, deliberate practice and individual technical feedback.</p></div>
-            </article>
-            <article>
-              <span>02</span>
-              <div><h3>Strength</h3><p>Movement quality, fitness, nutrition awareness and injury prevention.</p></div>
-            </article>
-            <article>
-              <span>03</span>
-              <div><h3>Strategy</h3><p>Game understanding, decision-making and competition readiness.</p></div>
-            </article>
-            <article>
-              <span>04</span>
-              <div><h3>Character</h3><p>Confidence, resilience, teamwork and respect — on and off the field.</p></div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pathway section-pad">
+    <section class="solution section-pad" id="solution">
       <div class="container">
-        <div class="pathway__top reveal">
-          <div>
-            <div class="eyebrow"><span></span> A clear pathway</div>
-            <h2>Every athlete starts<br />somewhere.</h2>
-          </div>
-          <p>Our coaching pathway helps each student progress at the right pace, with assessments and goals at every stage.</p>
+        <div class="solution-intro reveal">
+          <div class="kicker"><span></span> Enter Sports Gurukul</div>
+          <h2>One platform.<br /><em>Complete athlete development.</em></h2>
+          <p>A proposed digital ecosystem that combines coaching discovery, smart recording, performance intelligence and trusted athlete profiles.</p>
         </div>
 
-        <div class="pathway__track reveal">
-          <div class="pathway-step">
-            <span class="pathway-step__number">01</span>
-            <div class="pathway-step__dot"></div>
-            <h3>Discover</h3>
-            <p>Try the sport, build movement confidence and enjoy learning.</p>
-          </div>
-          <div class="pathway-step">
-            <span class="pathway-step__number">02</span>
-            <div class="pathway-step__dot"></div>
-            <h3>Develop</h3>
-            <p>Build reliable technique, fitness and game understanding.</p>
-          </div>
-          <div class="pathway-step">
-            <span class="pathway-step__number">03</span>
-            <div class="pathway-step__dot"></div>
-            <h3>Compete</h3>
-            <p>Prepare for leagues, tournaments and high-pressure moments.</p>
-          </div>
-          <div class="pathway-step">
-            <span class="pathway-step__number">04</span>
-            <div class="pathway-step__dot"></div>
-            <h3>Excel</h3>
-            <p>Follow a high-performance plan built around ambitious goals.</p>
-          </div>
+        <div class="journey-map reveal">
+          <article>
+            <div class="journey-icon">A</div>
+            <span>ATHLETES</span>
+            <h3>Upload skills and set goals</h3>
+            <p>Build a profile, share performance footage and define the next milestone.</p>
+          </article>
+          <div class="journey-arrow">→</div>
+          <article class="journey-platform">
+            <div class="journey-icon">SG</div>
+            <span>PLATFORM</span>
+            <h3>Record, analyse and match</h3>
+            <p>Convert raw effort into coach matches, feedback and measurable progress.</p>
+          </article>
+          <div class="journey-arrow">→</div>
+          <article>
+            <div class="journey-icon">C</div>
+            <span>COACHES</span>
+            <h3>Discover and develop talent</h3>
+            <p>Review athlete needs, deliver plans and build a trusted coaching practice.</p>
+          </article>
+        </div>
+
+        <div class="how-grid">
+          <article class="how-card reveal"><span>1</span><h3>Athlete signs up</h3><p>Receives a smart recording device or uses the supported recording flow.</p></article>
+          <article class="how-card reveal reveal-delay"><span>2</span><h3>Video auto-uploads</h3><p>Training footage is added to the athlete's secure profile.</p></article>
+          <article class="how-card reveal"><span>3</span><h3>Coach analyses</h3><p>Verified coaches review performance intelligence and footage.</p></article>
+          <article class="how-card reveal reveal-delay"><span>4</span><h3>Athlete improves</h3><p>Personalised coaching and progress reports support development.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="facilities section-pad" id="facilities">
+    <section class="pillars section-pad">
       <div class="container">
         <div class="section-heading reveal">
           <div>
-            <div class="eyebrow eyebrow--dark"><span></span> Built to perform</div>
-            <h2>A campus made for<br />focused training.</h2>
+            <div class="kicker kicker--dark"><span></span> The product advantage</div>
+            <h2>Not just coaching.<br />Measurable improvement.</h2>
           </div>
-          <p>Purpose-built spaces, quality equipment and a safe environment where young athletes can do their best work.</p>
+          <p>The proposed platform is built around three connected capabilities that make development more visible, structured and trusted.</p>
         </div>
 
-        <div class="facility-gallery">
-          <figure class="facility-gallery__large reveal">
-            <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?auto=format&fit=crop&w=1300&q=85" alt="Outdoor football ground" />
-            <figcaption><strong>Competition grounds</strong><span>Match-ready outdoor spaces</span></figcaption>
-          </figure>
-          <figure class="reveal reveal--delay">
-            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85" alt="Modern gym facility" />
-            <figcaption><strong>Performance gym</strong><span>Strength and conditioning</span></figcaption>
-          </figure>
-          <figure class="reveal reveal--delay-2">
-            <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=900&q=85" alt="Indoor basketball court" />
-            <figcaption><strong>Indoor courts</strong><span>All-weather practice</span></figcaption>
-          </figure>
-        </div>
-
-        <div class="facility-features reveal">
-          <div><span>✓</span> Certified coaching team</div>
-          <div><span>✓</span> First-aid trained staff</div>
-          <div><span>✓</span> Performance assessments</div>
-          <div><span>✓</span> Parent progress reports</div>
+        <div class="pillar-grid">
+          <article class="pillar-card reveal">
+            <div class="pillar-visual device-visual">
+              <div class="device-lens"></div><div class="device-light"></div><div class="device-stand"></div>
+            </div>
+            <span>01</span>
+            <h3>Smart Recording System</h3>
+            <ul><li>Consistent camera positioning</li><li>Better training-video quality</li><li>Automatic profile uploads</li><li>Remote coach access</li></ul>
+            <small>Proposed hardware concept</small>
+          </article>
+          <article class="pillar-card pillar-card--dark reveal reveal-delay">
+            <div class="pillar-visual chart-visual">
+              <i style="--h:43%"></i><i style="--h:62%"></i><i style="--h:54%"></i><i style="--h:82%"></i><i style="--h:74%"></i>
+            </div>
+            <span>02</span>
+            <h3>Performance Intelligence</h3>
+            <ul><li>Skill-analysis summaries</li><li>Progress tracking over time</li><li>Prioritised improvement areas</li><li>Shareable athlete performance profile</li></ul>
+            <small>Simulated in this prototype</small>
+          </article>
+          <article class="pillar-card reveal">
+            <div class="pillar-visual trust-visual"><b>✓</b><i></i><i></i><i></i></div>
+            <span>03</span>
+            <h3>Trust System</h3>
+            <ul><li>Coach certification checks</li><li>Experience and achievement records</li><li>Ratings and verified reviews</li><li>Safer decisions for athletes and parents</li></ul>
+            <small>Verification workflow concept</small>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="stories section-pad" id="stories">
+    <section class="product-demo section-pad" id="demo">
       <div class="container">
-        <div class="stories__heading reveal">
-          <div class="eyebrow"><span></span> Athlete stories</div>
-          <h2>Progress you can see.<br />Confidence they can feel.</h2>
-        </div>
-
-        <div class="testimonial-wrap reveal">
-          <button class="slider-button slider-button--prev" type="button" aria-label="Previous testimonial">←</button>
-          <div class="testimonial-slider">
-            <article class="testimonial active">
-              <div class="testimonial__rating">★★★★★</div>
-              <blockquote>“The coaches found the right balance between discipline and encouragement. Our son is fitter, more focused and genuinely excited to practise.”</blockquote>
-              <div class="testimonial__person">
-                <div class="testimonial__avatar">RS</div>
-                <div><strong>Rohit S.</strong><span>Parent of a cricket athlete</span></div>
-              </div>
-            </article>
-            <article class="testimonial">
-              <div class="testimonial__rating">★★★★★</div>
-              <blockquote>“I joined as a complete beginner. The step-by-step feedback helped me improve quickly and I now play confidently for my school team.”</blockquote>
-              <div class="testimonial__person">
-                <div class="testimonial__avatar">AK</div>
-                <div><strong>Anaya K.</strong><span>Badminton programme</span></div>
-              </div>
-            </article>
-            <article class="testimonial">
-              <div class="testimonial__rating">★★★★★</div>
-              <blockquote>“What stands out is the attention to every child. We receive clear progress updates, not just general comments after each session.”</blockquote>
-              <div class="testimonial__person">
-                <div class="testimonial__avatar">MP</div>
-                <div><strong>Meera P.</strong><span>Parent of a football athlete</span></div>
-              </div>
-            </article>
+        <div class="demo-heading reveal">
+          <div>
+            <div class="kicker"><span></span> Interactive product prototype</div>
+            <h2>See the ecosystem<br />from every side.</h2>
           </div>
-          <button class="slider-button slider-button--next" type="button" aria-label="Next testimonial">→</button>
+          <div class="demo-note"><b>DEMO DATA</b><span>No login, payment or live AI is required.</span></div>
         </div>
-        <div class="slider-dots" aria-label="Choose testimonial"></div>
-      </div>
-    </section>
 
-    <section class="faq section-pad">
-      <div class="container faq__grid">
-        <div class="faq__intro reveal">
-          <div class="eyebrow eyebrow--dark"><span></span> Common questions</div>
-          <h2>Before your first session.</h2>
-          <p>Still unsure which programme is right? Book an assessment and our coaches will recommend the best starting point.</p>
-          <a class="text-link" href="#contact">Talk to our team <span>↗</span></a>
+        <div class="role-tabs reveal" role="tablist" aria-label="Choose platform user">
+          <button class="role-tab active" type="button" role="tab" data-role="athlete" aria-selected="true"><span>A</span>Athlete</button>
+          <button class="role-tab" type="button" role="tab" data-role="coach" aria-selected="false"><span>C</span>Coach</button>
+          <button class="role-tab" type="button" role="tab" data-role="school" aria-selected="false"><span>S</span>School / Academy</button>
+          <button class="role-tab" type="button" role="tab" data-role="scout" aria-selected="false"><span>◎</span>Scout</button>
         </div>
-        <div class="accordion reveal reveal--delay">
-          <article class="accordion__item active">
-            <button type="button"><span>Does my child need prior experience?</span><i>+</i></button>
-            <div class="accordion__content"><p>No. Our programmes include beginner, intermediate and advanced groups. The initial assessment helps us place each athlete at the right level.</p></div>
-          </article>
-          <article class="accordion__item">
-            <button type="button"><span>How often are training sessions held?</span><i>+</i></button>
-            <div class="accordion__content"><p>Most development programmes run two or three times per week. High-performance plans may include additional conditioning and match sessions.</p></div>
-          </article>
-          <article class="accordion__item">
-            <button type="button"><span>How is progress measured?</span><i>+</i></button>
-            <div class="accordion__content"><p>Coaches track technical, physical and behavioural milestones, with regular assessments and clear progress updates for athletes and parents.</p></div>
-          </article>
-          <article class="accordion__item">
-            <button type="button"><span>Can we attend a trial session?</span><i>+</i></button>
-            <div class="accordion__content"><p>Yes. New athletes can book an introductory assessment and trial session before choosing a programme.</p></div>
-          </article>
+
+        <div class="dashboard-shell reveal">
+          <aside class="dashboard-sidebar">
+            <a class="dashboard-logo" href="#top"><span>SG</span><b>Sports Gurukul</b></a>
+            <div class="sidebar-user"><div class="avatar">AR</div><div><b id="sidebarName">Aarav Rao</b><small id="sidebarType">Athlete account</small></div></div>
+            <nav id="sidebarNav" aria-label="Demo dashboard navigation"></nav>
+            <div class="sidebar-upgrade"><span>ELITE</span><b>Unlock full visibility</b><small>Demo subscription</small></div>
+          </aside>
+
+          <div class="dashboard-main">
+            <div class="dashboard-topbar">
+              <div><small id="dashboardEyebrow">ATHLETE DASHBOARD</small><h3 id="dashboardTitle">Good morning, Aarav.</h3></div>
+              <div class="dashboard-actions"><button type="button" id="demoAction">Upload performance</button><div class="avatar">AR</div></div>
+            </div>
+            <div id="dashboardContent" class="dashboard-content" aria-live="polite"></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="contact section-pad" id="contact">
-      <div class="container contact__panel reveal">
-        <div class="contact__copy">
-          <div class="eyebrow"><span></span> Start your journey</div>
-          <h2>Find the athlete<br />within.</h2>
-          <p>Tell us a little about the student and the sport they are interested in. Our team will help with the next step.</p>
-          <div class="contact__notes">
-            <div><span>01</span><p><strong>Free assessment</strong><small>Understand current ability and goals</small></p></div>
-            <div><span>02</span><p><strong>Programme recommendation</strong><small>Choose the right sport and level</small></p></div>
-            <div><span>03</span><p><strong>Trial session</strong><small>Meet the coach and experience training</small></p></div>
+    <section class="case-study section-pad">
+      <div class="container case-grid">
+        <div class="case-copy reveal">
+          <div class="kicker kicker--dark"><span></span> Why access matters</div>
+          <h2>A small-town athlete.<br />A champion coach.<br /><em>A gold-medal outcome.</em></h2>
+          <p>The pitch deck uses Saina Nehwal's journey as an example of what can happen when talent is discovered and personally developed by the right coach.</p>
+          <blockquote>That kind of outcome should not depend on one lucky discovery. Sports Gurukul aims to make access more repeatable — for athletes in every town.</blockquote>
+          <small>Illustrative case study used in the pitch; no endorsement or affiliation is implied.</small>
+        </div>
+        <div class="case-path reveal reveal-delay">
+          <article><div class="case-person case-person--athlete">A</div><span>ATHLETE</span><h3>Talent outside a major centre</h3></article>
+          <div class="case-arrow">→</div>
+          <article><div class="case-person case-person--coach">C</div><span>COACH</span><h3>Discovered and personally coached</h3></article>
+          <div class="case-arrow">→</div>
+          <article><div class="case-person case-person--winner">★</div><span>OUTCOME</span><h3>World-class performance</h3></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="business section-pad" id="business">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="kicker kicker--dark"><span></span> A scalable sports ecosystem</div>
+            <h2>Five ways the<br />platform can earn.</h2>
           </div>
+          <p>The model combines recurring subscriptions, transaction revenue, hardware, institutional partnerships and professional access.</p>
         </div>
 
-        <form class="enquiry-form" id="enquiryForm">
-          <div class="form-row">
-            <label>Parent / athlete name<input type="text" name="name" placeholder="Enter your name" required /></label>
-            <label>Phone number<input type="tel" name="phone" placeholder="+91" required /></label>
+        <div class="revenue-grid">
+          <article class="revenue-card reveal"><span>01</span><div class="revenue-icon">A</div><h3>Athlete subscriptions</h3><p>Free access, Pro at ₹499/month and Elite at ₹1,999/month.</p><b>₹48 lakh <small>Year 1 projection</small></b></article>
+          <article class="revenue-card reveal reveal-delay"><span>02</span><div class="revenue-icon">%</div><h3>Coaching commission</h3><p>20% platform commission on each completed coaching session.</p><b>₹30 lakh <small>Year 1 projection</small></b></article>
+          <article class="revenue-card reveal"><span>03</span><div class="revenue-icon">▣</div><h3>Smart device</h3><p>Purchase or monthly rental of the proposed recording device.</p><b>₹20 lakh <small>Year 1 projection</small></b></article>
+          <article class="revenue-card reveal reveal-delay"><span>04</span><div class="revenue-icon">S</div><h3>School partnerships</h3><p>Annual subscriptions for schools, sports academies and institutions.</p><b>₹30 lakh <small>Year 1 projection</small></b></article>
+          <article class="revenue-card reveal"><span>05</span><div class="revenue-icon">◎</div><h3>Scout access</h3><p>Paid discovery access to searchable, verified athlete profiles.</p><b>₹12 lakh <small>Year 1 projection</small></b></article>
+        </div>
+
+        <div class="growth-panel reveal">
+          <div class="growth-copy"><span>PROJECTED GROWTH</span><h3>From product launch to athlete network.</h3><p>These figures are projections from the pitch deck, not existing revenue.</p></div>
+          <div class="growth-chart">
+            <div><b>₹1.4 Cr</b><i style="--growth:34%"></i><span>YEAR 1</span></div>
+            <div><b>₹4 Cr</b><i style="--growth:62%"></i><span>YEAR 2</span></div>
+            <div><b>₹10 Cr</b><i style="--growth:100%"></i><span>YEAR 3</span></div>
           </div>
-          <div class="form-row">
-            <label>Age group<select name="age" required><option value="" selected disabled>Select age</option><option>Under 8</option><option>8–12 years</option><option>13–16 years</option><option>17+ years</option></select></label>
-            <label>Sport<select name="sport" required><option value="" selected disabled>Select sport</option><option>Cricket</option><option>Football</option><option>Badminton</option><option>Basketball</option><option>Athletics</option><option>Strength & Conditioning</option></select></label>
-          </div>
-          <label>What are you looking for?<textarea name="message" rows="4" placeholder="Tell us about the athlete's experience or goals"></textarea></label>
-          <button class="button button--primary button--full" type="submit">Request a callback <span>↗</span></button>
-          <p class="form-note">By submitting, you agree to be contacted about Aaditya Sports Gurukul programmes.</p>
-        </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision section-pad">
+      <div class="container vision-grid">
+        <div class="vision-copy reveal">
+          <div class="kicker"><span></span> Sports Gurukul vision</div>
+          <h2>Building India's largest athlete-development network.</h2>
+          <p>A future where a talented child from any village can access the same quality coaching as a child in a major city.</p>
+          <div class="vision-list"><span>Multiple countries</span><span>Sports scholarships</span><span>Talent scouting network</span><span>School partnerships</span></div>
+        </div>
+        <div class="vision-roadmap reveal reveal-delay">
+          <div class="roadmap-line"></div>
+          <article><span>NOW</span><h3>Build the platform</h3><p>Develop the technology prototype and validate the first user journey.</p></article>
+          <article><span>NEXT</span><h3>Onboard trusted supply</h3><p>Verify coaches and begin school and academy partnerships.</p></article>
+          <article><span>THEN</span><h3>Launch the network</h3><p>Recruit the first athlete community and improve the model using real usage.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="ask section-pad" id="ask">
+      <div class="container ask-card reveal">
+        <div class="ask-main">
+          <span>WE ARE SEEKING</span>
+          <h2>₹1.5 Crore</h2>
+          <p>for <strong>15% equity</strong></p>
+          <small>Implied post-money valuation: ₹10 crore</small>
+        </div>
+        <div class="fund-use">
+          <h3>Proposed use of funds</h3>
+          <div><span><i style="--share:35%"></i></span><b>35%</b><p>Product & AI development</p></div>
+          <div><span><i style="--share:25%"></i></span><b>25%</b><p>Smart device manufacturing</p></div>
+          <div><span><i style="--share:20%"></i></span><b>20%</b><p>Coach & school partnerships</p></div>
+          <div><span><i style="--share:15%"></i></span><b>15%</b><p>Marketing & customer acquisition</p></div>
+          <div><span><i style="--share:5%"></i></span><b>5%</b><p>Legal & operations</p></div>
+        </div>
+        <div class="ask-cta">
+          <span>FOUNDER</span>
+          <h3>Aaditya Ghosalkar</h3>
+          <p>Student innovator • IX B</p>
+          <button class="button button--light js-open-pitch" type="button">Launch full-screen pitch</button>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer__top">
+  <footer>
+    <div class="container footer-grid">
       <a class="brand brand--footer" href="#top">
-        <span class="brand__mark"><span class="brand__sun"></span><span class="brand__letter">A</span></span>
-        <span class="brand__text"><strong>Aaditya</strong><small>Sports Gurukul</small></span>
+        <span class="brand-mark"><span class="brand-ball"></span><span class="brand-path"></span></span>
+        <span class="brand-copy"><strong>SPORTS GURUKUL</strong><small>One platform. Complete athlete development.</small></span>
       </a>
-      <p>Building skilled athletes, strong minds and better human beings through sport.</p>
-      <a class="footer__back" href="#top">Back to top ↑</a>
+      <p>Interactive concept prototype prepared for Aaditya Ghosalkar's Shark Tank presentation.</p>
+      <span>© <b id="year"></b> Sports Gurukul</span>
     </div>
-    <div class="container footer__links">
-      <div><strong>Programmes</strong><a href="#programmes">Cricket</a><a href="#programmes">Football</a><a href="#programmes">Badminton</a><a href="#programmes">Athletics</a></div>
-      <div><strong>Academy</strong><a href="#method">Our method</a><a href="#facilities">Facilities</a><a href="#stories">Athlete stories</a><a href="#contact">Admissions</a></div>
-      <div><strong>Contact</strong><a href="#contact">Book an assessment</a><a href="#contact">Request a callback</a><span>India</span></div>
-      <div class="footer__message"><strong>Play. Learn. Grow.</strong><p>Structured coaching with values that last beyond the game.</p></div>
-    </div>
-    <div class="container footer__bottom"><span>© <span id="year"></span> Aaditya Sports Gurukul</span><span>Designed for the next generation of athletes.</span></div>
   </footer>
 
-  <div class="toast" role="status" aria-live="polite">
-    <span>✓</span>
-    <div><strong>Thank you!</strong><small>Your enquiry has been recorded for this demo.</small></div>
-    <button type="button" aria-label="Close notification">×</button>
+  <div class="pitch-overlay" id="pitchOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Sports Gurukul pitch mode">
+    <div class="pitch-topbar">
+      <a class="pitch-brand" href="#top"><span>SG</span><b>SPORTS GURUKUL</b></a>
+      <div class="pitch-progress"><i id="pitchProgress"></i></div>
+      <div class="pitch-counter"><span id="pitchCurrent">1</span> / <span id="pitchTotal">5</span></div>
+      <button class="pitch-close" type="button" aria-label="Close pitch mode">×</button>
+    </div>
+
+    <div class="pitch-stage">
+      <section class="pitch-slide active" data-pitch="1">
+        <div class="pitch-kicker">01 — THE PROBLEM</div>
+        <h2>Millions of athletes.<br /><em>Limited opportunities.</em></h2>
+        <p>Money, geography, availability and accessibility separate talented players from the right coaching.</p>
+        <div class="pitch-stat-row"><div><b>₹</b><span>Coaching is expensive</span></div><div><b>✦</b><span>Talent remains unnoticed</span></div><div><b>↔</b><span>Coaches and athletes cannot connect</span></div></div>
+      </section>
+      <section class="pitch-slide" data-pitch="2">
+        <div class="pitch-kicker">02 — THE SOLUTION</div>
+        <h2>One platform.<br /><em>Complete athlete development.</em></h2>
+        <p>Sports Gurukul connects athletes with verified coaches, measurable performance intelligence and opportunity pathways.</p>
+        <div class="pitch-flow"><span>Athlete</span><b>→</b><span>Sports Gurukul</span><b>→</b><span>Coach</span><b>→</b><span>Opportunity</span></div>
+      </section>
+      <section class="pitch-slide" data-pitch="3">
+        <div class="pitch-kicker">03 — THE PRODUCT</div>
+        <h2>Record. Analyse.<br /><em>Improve. Get discovered.</em></h2>
+        <div class="pitch-product-grid"><article><b>▣</b><h3>Smart recording</h3><p>Capture training consistently.</p></article><article><b>AI</b><h3>Performance intelligence</h3><p>Show strengths and priorities.</p></article><article><b>✓</b><h3>Trust system</h3><p>Verify coaches and profiles.</p></article></div>
+      </section>
+      <section class="pitch-slide" data-pitch="4">
+        <div class="pitch-kicker">04 — THE BUSINESS</div>
+        <h2>Five revenue streams.<br /><em>One scalable ecosystem.</em></h2>
+        <div class="pitch-revenue"><span>Athlete subscriptions</span><span>Coaching commission</span><span>Smart device</span><span>School partnerships</span><span>Scout access</span></div>
+        <div class="pitch-growth"><b>₹1.4 Cr <small>Y1</small></b><b>₹4 Cr <small>Y2</small></b><b>₹10 Cr <small>Y3</small></b></div>
+      </section>
+      <section class="pitch-slide" data-pitch="5">
+        <div class="pitch-kicker">05 — THE ASK</div>
+        <h2>₹1.5 Crore<br /><em>for 15% equity.</em></h2>
+        <p>To build the product, develop performance intelligence, manufacture the device and launch the first athlete network.</p>
+        <div class="pitch-founder"><span>Presented by</span><b>Aaditya Ghosalkar</b><small>Founder • Student Innovator</small></div>
+      </section>
+    </div>
+
+    <div class="pitch-controls">
+      <button class="pitch-prev" type="button">← Previous</button>
+      <span>Use arrow keys or the buttons</span>
+      <button class="pitch-next" type="button">Next →</button>
+    </div>
+  </div>
+
+  <div class="demo-modal" id="demoModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Demo action">
+    <div class="demo-modal-card">
+      <button class="modal-close" type="button" aria-label="Close">×</button>
+      <div class="modal-icon" id="modalIcon">AI</div>
+      <span class="modal-label">SIMULATED DEMO</span>
+      <h3 id="modalTitle">Performance uploaded</h3>
+      <p id="modalText">The prototype has added a sample video to the athlete profile and generated a simulated analysis.</p>
+      <div class="modal-progress"><i></i></div>
+      <button class="button button--coral modal-done" type="button">Continue</button>
+    </div>
   </div>
 
   <script src="script.js"></script>
