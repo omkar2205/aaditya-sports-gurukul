@@ -1,29 +1,33 @@
 # Sports Gurukul
 
-Customer-facing sports coaching, athlete development and coach matching website.
+Customer-facing sports coaching and coach matching website.
+
+## Public pages
+
+- `index.html` contains the shorter homepage.
+- `find-coach.html` contains the full athlete profile and coach matching flow.
+- `platform.html` contains the athlete dashboard, mobile recording and match previews.
+- `about.html` contains placeholders for two founders and one couple photograph.
+- `contact.html` contains placeholder contact details and the enquiry form.
 
 ## Website files
 
-- `index.html` contains the complete page structure, coach form, reviews, About, Contact and KhelSaathi interface.
-- `styles.css` loads the modular responsive design files.
-- `base.css`, `sections.css`, `forms.css` and `responsive.css` contain the website styling.
-- `script.js` contains navigation, video controls, counters, scroll interactions and coach matching.
-- `chatbot.css` and `chatbot.js` contain the standalone KhelSaathi interface and connection.
-- `assets/logo.svg` is the current logo asset.
-- `apps-script/Code.gs` is the Google Apps Script backend for Groq, diagnostics, conversation logging and lead capture.
-- `.github/workflows/deploy-pages.yml` publishes the website to GitHub Pages.
+- `styles.css` imports the shared CSS modules.
+- `base.css` contains shared layout, navigation, hero, footer and component styles.
+- `sections.css` contains homepage and secondary page sections.
+- `forms.css` contains coach matching and contact form styles.
+- `responsive.css` contains tablet and mobile layouts.
+- `script.js` contains shared navigation, counters, media controls, animations and placeholder contact behaviour.
+- `find-coach.js` contains the athlete profile, coach matching and lead logging behaviour.
+- `chatbot.js` and `chatbot.css` contain the KhelSaathi interface and Apps Script connection.
+- `assets/logo.svg` is the current Sports Gurukul logo.
+- `apps-script/Code.gs` is the Google Apps Script backend for Groq, diagnostics, conversations and leads.
+- `.github/workflows/deploy-pages.yml` publishes the site to GitHub Pages.
 
-## Media
+## KhelSaathi backend
 
-The website uses remotely hosted stock media from Pexels and Unsplash. Replace the remote URLs in `index.html` when final brand photography and video are available.
-
-## KhelSaathi backend setup
-
-1. Open the Google Sheet named `Sports Gurukul - KhelSaathi Backend`.
-2. Open **Extensions > Apps Script**.
-3. Replace the complete contents of `Code.gs` with `apps-script/Code.gs` from this repository.
-4. Confirm `GROQ_API_KEY` exists in Apps Script Project Settings.
-5. Deploy a new version of the existing Web App.
+The Apps Script deployment URL is configured in `chatbot.js` and `find-coach.js`.
+The Groq key must remain in Apps Script Properties as `GROQ_API_KEY`.
 
 ## Current sheets
 
