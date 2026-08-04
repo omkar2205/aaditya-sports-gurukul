@@ -35,6 +35,18 @@ jobs:
           cp assets/logo.svg _site/assets/logo.svg
           cp .nojekyll _site/.nojekyll 2>/dev/null || true
 
+          python <<'PY'
+          from pathlib import Path
+
+          script = Path('_site/script.js')
+          content = script.read_text(encoding='utf-8')
+          content = content.replace(
+              "const KHELSAATHI_API_URL = '';",
+              "const KHELSAATHI_API_URL = 'https://script.google.com/macros/s/AKfycbypuCFhBf6B15McAP4WtTe65ryExAvIoHQhpPO6TlWd5N083P8Ll-ekXlrmLJTV2uJ-jA/exec';"
+          )
+          script.write_text(content, encoding='utf-8')
+          PY
+
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
