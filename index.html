@@ -248,6 +248,39 @@
 
   <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="#top"><img class="brand-logo" src="assets/logo.svg" alt="Sports Gurukul logo"><span><b>SPORTS GURUKUL</b><small>Talent meets opportunity</small></span></a><p>© <span id="year"></span> Sports Gurukul</p></div></footer>
 
+  <button class="chat-launcher" type="button" aria-label="Open KhelSaathi" aria-controls="khelSaathi" aria-expanded="false">
+    <span class="chat-launcher-icon"><img src="assets/logo.svg" alt=""></span>
+    <span class="chat-launcher-copy"><b>KhelSaathi</b><small>How can I help?</small></span>
+  </button>
+
+  <section class="chat-panel" id="khelSaathi" aria-label="KhelSaathi chatbot" aria-hidden="true">
+    <header class="chat-header">
+      <div class="chat-identity">
+        <span class="chat-avatar"><img src="assets/logo.svg" alt=""></span>
+        <span><b>KhelSaathi</b><small><i></i> Sports guidance</small></span>
+      </div>
+      <button class="chat-close" type="button" aria-label="Close KhelSaathi">×</button>
+    </header>
+    <div class="chat-messages" aria-live="polite">
+      <div class="chat-message assistant">
+        <span class="message-avatar"><img src="assets/logo.svg" alt=""></span>
+        <div class="message-bubble">Hi, I’m KhelSaathi. Tell me what you play or what you would like help with.</div>
+      </div>
+    </div>
+    <div class="chat-suggestions" aria-label="Suggested questions">
+      <button type="button" data-message="Help me find the right coach">Find the right coach</button>
+      <button type="button" data-message="Which membership plan suits me?">Choose a plan</button>
+      <button type="button" data-message="How does coach matching work?">How matching works</button>
+      <button type="button" data-message="I am a parent looking for a coach for my child">I am a parent</button>
+    </div>
+    <form class="chat-form">
+      <label class="sr-only" for="chatInput">Message KhelSaathi</label>
+      <textarea id="chatInput" rows="1" maxlength="600" placeholder="Ask KhelSaathi"></textarea>
+      <button type="submit" aria-label="Send message">➤</button>
+    </form>
+    <p class="chat-note">For injuries or pain, speak with a qualified medical professional.</p>
+  </section>
+
   <div class="modal" aria-hidden="true"><div class="shade close-modal"></div><div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="close close-modal" type="button" aria-label="Close">×</button><div class="success">✓</div><h2 id="modalTitle">Your coach selection is ready.</h2><p id="modalText"></p><div class="confirm"></div><button class="btn primary close-modal" type="button">Done</button></div></div>
 
   <script src="script.js"></script>
