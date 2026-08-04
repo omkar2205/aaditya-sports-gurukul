@@ -31,7 +31,9 @@ jobs:
         run: |
           rm -rf _site
           mkdir -p _site/assets
-          cp index.html styles.css base.css sections.css forms.css responsive.css script.js chatbot.js chatbot.css _site/
+          cp index.html find-coach.html platform.html about.html contact.html _site/
+          cp styles.css base.css sections.css forms.css responsive.css chatbot.css _site/
+          cp script.js find-coach.js chatbot.js _site/
           cp assets/logo.svg _site/assets/logo.svg
           cp .nojekyll _site/.nojekyll 2>/dev/null || true
 

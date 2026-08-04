@@ -148,8 +148,17 @@
     });
   };
 
+  const goToCoachForm = (updates = {}) => {
+    try { sessionStorage.setItem('khelSaathiPrefill', JSON.stringify(updates)); } catch (error) {}
+    window.location.href = 'find-coach.html';
+  };
+
   const applyFormUpdates = (updates = {}) => {
-    if (!coachForm) return;
+    if (!coachForm) {
+      goToCoachForm(updates);
+      return;
+    }
+
     const allowed = ['sport', 'level', 'goal', 'mode', 'plan'];
     Object.entries(updates).forEach(([name, selectedValue]) => {
       if (!allowed.includes(name) || !selectedValue) return;
@@ -162,6 +171,24 @@
     });
     closeChat();
     document.querySelector('#match')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const openCoachMatching = () => {
+    if (document.querySelector('#match')) {
+      closeChat();
+      document.querySelector('#match').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      goToCoachForm();
+    }
+  };
+
+  const openPlans = () => {
+    if (document.querySelector('#plans')) {
+      closeChat();
+      document.querySelector('#plans').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.location.href = 'index.html#plans';
+    }
   };
 
   const handleResponse = (response) => {
@@ -179,15 +206,9 @@
     if (Object.values(updates).some(Boolean)) {
       addAction('Use these details', () => applyFormUpdates(updates));
     } else if (response.action === 'scroll_to_match') {
-      addAction('Open coach matching', () => {
-        closeChat();
-        document.querySelector('#match')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+      addAction('Open coach matching', openCoachMatching);
     } else if (response.action === 'scroll_to_plans') {
-      addAction('View membership plans', () => {
-        closeChat();
-        document.querySelector('#plans')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
+      addAction('View membership plans', openPlans);
     }
     updateQuickReplies(response.suggestions);
   };
