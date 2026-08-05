@@ -90,6 +90,15 @@
   font-size: 13px;
 }
 
+.founder-heading {
+  display: block;
+  margin-bottom: 36px;
+}
+
+.founder-heading h2 {
+  white-space: nowrap;
+}
+
 .founder-story-panel {
   max-width: 860px;
   margin: 56px auto 0;
@@ -141,8 +150,33 @@
   line-height: 1.6;
 }
 
+.steps-compact article {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 28px;
+}
+
+.steps-compact article > span {
+  display: none;
+}
+
+.steps-compact h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 1.15;
+}
+
+.steps-compact p {
+  max-width: 27ch;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 @media (max-width: 860px) {
-  .values-heading h2 {
+  .values-heading h2,
+  .founder-heading h2 {
     white-space: normal;
   }
 }
@@ -162,7 +196,8 @@
     padding: 26px 20px;
   }
 
-  .values-grid article {
+  .values-grid article,
+  .steps-compact article {
     min-height: 150px;
   }
 }
