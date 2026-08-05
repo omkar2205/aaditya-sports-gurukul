@@ -34,7 +34,7 @@ jobs:
           cp index.html find-coach.html platform.html about.html contact.html _site/
           cp styles.css base.css sections.css forms.css responsive.css chatbot.css _site/
           cp script.js find-coach.js chatbot.js _site/
-          cp assets/logo.svg _site/assets/logo.svg
+          cp -R assets/. _site/assets/
           cp .nojekyll _site/.nojekyll 2>/dev/null || true
 
       - name: Upload website
