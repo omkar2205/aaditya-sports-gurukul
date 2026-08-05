@@ -1,4 +1,129 @@
-@import url("base.css?v=20260805-8");
-@import url("sections.css?v=20260805-8");
-@import url("forms.css?v=20260805-8");
-@import url("responsive.css?v=20260805-8");
+@import url("base.css?v=20260805-9");
+@import url("sections.css?v=20260805-9");
+@import url("forms.css?v=20260805-9");
+@import url("responsive.css?v=20260805-9");
+
+.founder-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.founder-profile-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 20px 55px rgba(9, 31, 56, .09);
+}
+
+.founder-photo-frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--navy-soft), var(--navy-deep));
+}
+
+.founder-photo-frame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+}
+
+.founder-photo-frame > img:not([hidden]) + .founder-photo-fallback {
+  display: none;
+}
+
+.founder-photo-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  color: rgba(255, 255, 255, .6);
+  background: radial-gradient(circle at 50% 38%, rgba(125, 225, 197, .2), transparent 42%), linear-gradient(150deg, var(--navy-soft), var(--navy-deep));
+}
+
+.founder-photo-fallback svg {
+  width: min(210px, 52%);
+  fill: rgba(255, 255, 255, .08);
+  stroke: rgba(255, 255, 255, .4);
+  stroke-width: 2;
+}
+
+.founder-photo-fallback span {
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.founder-profile-copy {
+  padding: 24px 26px 28px;
+}
+
+.founder-profile-copy > span {
+  color: var(--coral-dark);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: .13em;
+}
+
+.founder-profile-copy h2 {
+  margin: 7px 0 2px;
+  font-size: clamp(27px, 3vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+
+.founder-profile-copy small {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.founder-profile-copy p {
+  margin: 16px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.founder-story-panel {
+  max-width: 860px;
+  margin: 56px auto 0;
+  padding: 34px;
+  border-radius: 24px;
+  text-align: center;
+  background: var(--surface-soft);
+}
+
+.founder-story-panel h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -.04em;
+}
+
+.founder-story-panel p {
+  max-width: 720px;
+  margin: 16px auto 0;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .founder-photo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .founder-profile-card {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .founder-story-panel {
+    margin-top: 36px;
+    padding: 26px 20px;
+  }
+}
