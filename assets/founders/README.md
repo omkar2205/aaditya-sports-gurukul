@@ -2,15 +2,21 @@
 
 Upload the final founder photographs to this folder using these exact filenames:
 
-- `aaditya-ghosalkar.jpg`
 - `aliza-khatri.jpg`
+- `aaditya-ghosalkar.jpg`
 
 Recommended preparation:
 
-- Aspect ratio: 4:5 portrait
-- Recommended size: 1200 x 1500 pixels
-- Minimum useful size: 800 x 1000 pixels
+- Aspect ratio: 3:4 portrait
+- Recommended size: 1200 × 1600 pixels or larger
+- Minimum useful size: 900 × 1200 pixels
 - Format: JPG
-- Keep the subject centred with some space above the head and around the shoulders
+- Keep the face and upper body centred
+- Avoid adding text, borders or logos to the photographs
 
-The About page will display the photographs automatically after files with these names are uploaded.
+Page order:
+
+- Left: Aliza Khatri
+- Right: Aaditya Ghosalkar
+
+The About page will display the photographs automatically after files with these names are uploaded. Until then, the named portrait placeholders remain visible.
